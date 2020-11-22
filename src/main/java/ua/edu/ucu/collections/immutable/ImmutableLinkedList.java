@@ -17,7 +17,7 @@ public class ImmutableLinkedList implements ImmutableList {
     public ImmutableLinkedList(Object[] source) {
         this();
         this.head = new Node(source[0]);
-        Node now = this.tail;
+        Node now = this.head;
         for (int i = 1; i < source.length; i += 1) {
             Node next = new Node(source[i]);
             next.setPrev(now);
