@@ -55,9 +55,9 @@ public class ImmutableArrayList implements ImmutableList {
         ImmutableArrayList copy = new ImmutableArrayList(c.length + len);
         System.arraycopy(elements, 0, copy.elements, 0, index);
         System.arraycopy(c, 0, copy.elements, index, c.length);
-        int i1 = index + c.length;
-        int i2 = elements.length - index;
-        System.arraycopy(elements, index, copy.elements, i1, i2);
+        int from = index + c.length;
+        int size = elements.length - index;
+        System.arraycopy(elements, index, copy.elements, from, size);
         return copy;
     }
 
