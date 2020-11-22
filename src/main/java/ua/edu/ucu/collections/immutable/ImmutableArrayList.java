@@ -55,7 +55,9 @@ public class ImmutableArrayList implements ImmutableList {
         ImmutableArrayList copy = new ImmutableArrayList(c.length + len);
         System.arraycopy(elements, 0, copy.elements, 0, index);
         System.arraycopy(c, 0, copy.elements, index, c.length);
-        System.arraycopy(elements, index, copy.elements, index + c.length, elements.length - index);
+        int i1 = index + c.length;
+        int i2 = elements.length - index;
+        System.arraycopy(elements, index, copy.elements, i1, i2);
         return copy;
     }
 
@@ -118,6 +120,6 @@ public class ImmutableArrayList implements ImmutableList {
     @Override
     public String toString() {
         String str = Arrays.toString(elements);
-        return str.substring(1,str.length() - 1);
+        return str.substring(1, str.length() - 1);
     }
 }
