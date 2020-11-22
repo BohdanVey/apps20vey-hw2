@@ -22,13 +22,15 @@ public class ImmutableArrayList implements ImmutableList {
 
 
     private void checkBounds(int index) {
-        if (index < 0 || index > len)
+        if (index < 0 || index > len) {
             throw new IndexOutOfBoundsException();
+        }
     }
 
     private void checkBoundsBig(int index) {
-        if (index < 0 || index >= len)
+        if (index < 0 || index >= len) {
             throw new IndexOutOfBoundsException();
+        }
     }
 
     @Override

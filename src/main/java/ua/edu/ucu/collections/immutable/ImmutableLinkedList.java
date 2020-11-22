@@ -9,14 +9,14 @@ public class ImmutableLinkedList implements ImmutableList {
     private int len;
 
 
-
     public ImmutableLinkedList() {
-        this.tail = this.head = null;
+        this.head = null;
+        this.tail = null;
     }
 
     public ImmutableLinkedList(Object[] source) {
         this();
-        this.head = this.tail = new Node(source[0]);
+        this.head = new Node(source[0]);
         Node now = this.tail;
         for (int i = 1; i < source.length; i += 1) {
             Node next = new Node(source[i]);
@@ -25,20 +25,21 @@ public class ImmutableLinkedList implements ImmutableList {
             now = next;
         }
         len = source.length;
-        tail = now;
+        this.tail = now;
 
     }
-
 
 
     private void checkBounds(int index) {
-        if (index < 0 || index > len)
+        if (index < 0 || index > len) {
             throw new IndexOutOfBoundsException();
+        }
     }
 
     private void checkBoundsBig(int index) {
-        if (index < 0 || index >= len)
+        if (index < 0 || index >= len) {
             throw new IndexOutOfBoundsException();
+        }
     }
 
 
@@ -61,15 +62,14 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableList addAll(int index, Object[] c) {
         checkBounds(index);
-        if(head == null){
+        if (head == null) {
             return new ImmutableLinkedList(c);
         }
         ImmutableLinkedList copy = new ImmutableLinkedList(this.toArray());
         Node next;
-        if(index != len) {
+        if (index != len) {
             next = copy.getNode(index);
-        }
-        else {
+        } else {
             next = null;
         }
         Node prev;
@@ -123,8 +123,9 @@ public class ImmutableLinkedList implements ImmutableList {
         checkBoundsBig(index);
         ImmutableLinkedList copy = new ImmutableLinkedList(this.toArray());
         Node now = copy.getNode(index);
-        if(len == 1)
+        if (len == 1) {
             return new ImmutableLinkedList();
+        }
         if (index == 0) {
             now.getNext().setPrev(now);
             copy.head = now.getNext();
@@ -189,15 +190,15 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public String toString() {
         String str = Arrays.toString(this.toArray());
-        return str.substring(1,str.length() - 1);
+        return str.substring(1, str.length() - 1);
     }
 
     public ImmutableLinkedList addFirst(Object e) {
-        return (ImmutableLinkedList)add(0, e);
+        return (ImmutableLinkedList) add(0, e);
     }
 
     public ImmutableLinkedList addLast(Object e) {
-        return (ImmutableLinkedList)add(e);
+        return (ImmutableLinkedList) add(e);
     }
 
     public Object getFirst() {
@@ -209,11 +210,11 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList removeFirst() {
-        return (ImmutableLinkedList)remove(0);
+        return (ImmutableLinkedList) remove(0);
     }
 
     public ImmutableLinkedList removeLast() {
-        return (ImmutableLinkedList)remove(len - 1);
+        return (ImmutableLinkedList) remove(len - 1);
     }
 
 
