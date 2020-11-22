@@ -9,7 +9,8 @@ public interface ImmutableList {
     ImmutableList add(Object e); //додає елемент у кінець колекції
 
     ImmutableList add(int index, Object e); //додає елемент до колекції
-    // за індексом, та кидає виключну ситуацію, якщо індекс виходить за межі колекції
+    // за індексом, та кидає виключну ситуацію,
+    // якщо індекс виходить за межі колекції
 
     ImmutableList addAll(Object[] c); //додає масив елементів у кінець колекції
 
@@ -23,7 +24,8 @@ public interface ImmutableList {
     ImmutableList remove(int index); //видаляє елемент за індексом,
     // та кидає виключну ситуацію, якщо індекс виходить за межі колекції
 
-    ImmutableList set(int index, Object e); //змінює значення елементу за індексом,
+    ImmutableList set(int index, Object e); //змінює
+    // значення елементу за індексом,
     // та кидає виключну ситуацію, якщо індекс виходить за межі колекції
 
     int indexOf(Object e); //шукає індекс елемента
@@ -38,5 +40,6 @@ public interface ImmutableList {
     Object[] toArray(); //перетворює колекцію до масиву обєктів
 
     @Override
-    String toString(); //повертає рядок, де через кому відображаютсься елементи колекції
+    String toString(); //повертає рядок, де через кому
+    // відображаютсься елементи колекції
 }
