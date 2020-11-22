@@ -227,7 +227,7 @@ public class ImmutableLinkedListTest {
 
     public void testRemoveLast(ImmutableLinkedList list) {
         int index =list.size()-1;
-        ImmutableLinkedList arr = (ImmutableLinkedList) list.removeFirst();
+        ImmutableLinkedList arr = (ImmutableLinkedList) list.removeLast();
         Object[] expected = new Object[list.size() - 1];
         for (int i = 0; i < index; i++) {
             expected[i] = list.get(i);
@@ -242,8 +242,8 @@ public class ImmutableLinkedListTest {
 
     @Test
     public void testRemoveLast(){
-        testRemoveFirst(firstList);
-        testRemoveFirst(secondList);
+        testRemoveLast(firstList);
+        testRemoveLast(secondList);
     }
     @Test
     public void testClear(){

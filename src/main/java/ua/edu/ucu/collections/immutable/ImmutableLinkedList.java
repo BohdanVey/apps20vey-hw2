@@ -29,12 +29,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     }
 
-    public Node getHead(){
-        return head;
-    }
-    public Node getTail(){
-        return tail;
-    }
+
 
     private void checkBounds(int index) {
         if (index < 0 || index > len)
@@ -66,7 +61,7 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableList addAll(int index, Object[] c) {
         checkBounds(index);
-        if(head == null && tail ==null){
+        if(head == null){
             return new ImmutableLinkedList(c);
         }
         ImmutableLinkedList copy = new ImmutableLinkedList(this.toArray());
