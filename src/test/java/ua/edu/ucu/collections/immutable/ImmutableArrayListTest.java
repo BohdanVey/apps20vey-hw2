@@ -44,25 +44,24 @@ public class ImmutableArrayListTest {
     }
 
 
-
-
     public void testAddList(ImmutableArrayList list, Object[] value) {
         ImmutableArrayList arr = (ImmutableArrayList) list.addAll(value);
         Object[] expected = new Object[list.size() + value.length];
         for (int i = 0; i < list.size(); i++) {
             expected[i] = list.get(i);
         }
-        for(int i=0;i<value.length;i+=1)
-            expected[i+ list.size()] = value[i];
+        for (int i = 0; i < value.length; i += 1)
+            expected[i + list.size()] = value[i];
         assertArrayEquals(arr.toArray(), expected);
         assertEquals(arr.size(), expected.length);
 
     }
+
     @Test
     public void testAddList() {
-        testAddList(firstList, new Object[] {1, 2, 3});
-        testAdd(secondList, new Object[] {1, 2, 3});
-        testAdd(emptyList, new Object[] {1, 2, 3});
+        testAddList(firstList, new Object[]{1, 2, 3});
+        testAdd(secondList, new Object[]{1, 2, 3});
+        testAdd(emptyList, new Object[]{1, 2, 3});
         checkArrays();
     }
 
@@ -77,7 +76,7 @@ public class ImmutableArrayListTest {
         for (int i = index; i < list.size(); i += 1)
             expected[i + 1] = list.get(i);
         assertArrayEquals(arr.toArray(), expected);
-        assertEquals(arr.size(),expected.length);
+        assertEquals(arr.size(), expected.length);
     }
 
     @Test
@@ -98,7 +97,7 @@ public class ImmutableArrayListTest {
             expected[i] = list.get(i + 1);
         }
         assertArrayEquals(arr.toArray(), expected);
-        assertEquals(arr.size(),expected.length);
+        assertEquals(arr.size(), expected.length);
 
     }
 
@@ -109,14 +108,16 @@ public class ImmutableArrayListTest {
         checkArrays();
 
     }
+
     public void testSet(ImmutableArrayList list, int index, Object value) {
-        ImmutableArrayList arr = (ImmutableArrayList) list.set(index,value);
+        ImmutableArrayList arr = (ImmutableArrayList) list.set(index, value);
         Object[] expected = list.toArray();
         expected[index] = value;
         assertArrayEquals(arr.toArray(), expected);
-        assertEquals(arr.size(),expected.length);
+        assertEquals(arr.size(), expected.length);
 
     }
+
     @Test
     public void testSet() {
         testSet(firstList, 0, 3);
@@ -125,66 +126,72 @@ public class ImmutableArrayListTest {
     }
 
     @Test
-    public void testIndexOf(){
-        assertEquals(firstList.indexOf(1),0);
-        assertEquals(firstList.indexOf(3),-1);
-        assertEquals(secondList.indexOf(3),2);
-        assertEquals(secondList.indexOf(111),-1);
-        assertEquals(emptyList.indexOf(111),-1);
+    public void testIndexOf() {
+        assertEquals(firstList.indexOf(1), 0);
+        assertEquals(firstList.indexOf(3), -1);
+        assertEquals(secondList.indexOf(3), 2);
+        assertEquals(secondList.indexOf(111), -1);
+        assertEquals(emptyList.indexOf(111), -1);
         checkArrays();
     }
 
     @Test
-    public void testSize(){
-        assertEquals(firstList.size(),firstArr.length);
-        assertEquals(secondList.size(),secondArr.length);
-        assertEquals(emptyList.size(),0);
+    public void testSize() {
+        assertEquals(firstList.size(), firstArr.length);
+        assertEquals(secondList.size(), secondArr.length);
+        assertEquals(emptyList.size(), 0);
     }
 
 
     @Test
-    public void testEmpty(){
+    public void testEmpty() {
         assertFalse(firstList.isEmpty());
         assertFalse(secondList.isEmpty());
         assertTrue(emptyList.isEmpty());
     }
 
     @Test
-    public void testString(){
-        assertEquals(firstList.toString(),"1");
-        assertEquals(secondList.toString(),"1, 2, 3, 4, 5, 6");
-        assertEquals(emptyList.toString(),"");
+    public void testString() {
+        assertEquals(firstList.toString(), "1");
+        assertEquals(secondList.toString(), "1, 2, 3, 4, 5, 6");
+        assertEquals(emptyList.toString(), "");
     }
 
     @Test
-    public void testClear(){
-        assertEquals(firstList.clear().toString(),"");
+    public void testClear() {
+        assertEquals(firstList.clear().toString(), "");
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListGetError() {
         emptyList.get(0);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListGetError2() {
         firstList.get(1);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListGetError3() {
         firstList.get(-5);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListSetError() {
-        emptyList.set(0,4);
+        emptyList.set(0, 4);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListSetError2() {
-        firstList.set(1,4);
+        firstList.set(1, 4);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListRemoveError() {
         emptyList.remove(0);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListRemoveError2() {
         firstList.remove(1);
@@ -192,14 +199,17 @@ public class ImmutableArrayListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListAddError() {
-        emptyList.add(1,34);
+        emptyList.add(1, 34);
     }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListAddError2() {
-        firstList.add(2,34);
+        firstList.add(2, 34);
     }
+
+    @Test
     public void testListAddError3() {
-        firstList.add(-5,34);
+        firstList.add(-5, 34);
     }
 
 
