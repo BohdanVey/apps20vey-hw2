@@ -3,6 +3,8 @@ package ua.edu.ucu.collections.immutable;
 // У результаті змін, що призводять на модифікації (зміну стану) колекції має повртатись нова колекція
 public interface ImmutableList {
 
+
+
     ImmutableList add(Object e); //додає елемент у кінець колекції
 
     ImmutableList add(int index, Object e); //додає елемент до колекції за індексом, та кидає виключну ситуацію, якщо індекс виходить за межі колекції
