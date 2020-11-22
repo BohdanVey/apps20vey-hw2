@@ -71,6 +71,28 @@ public class ImmutableLinkedListTest {
         checkArrays();
     }
 
+
+    public void testAddList(ImmutableLinkedList list, Object[] value) {
+        ImmutableLinkedList arr = (ImmutableLinkedList) list.addAll(value);
+        Object[] expected = new Object[list.size() + value.length];
+        for (int i = 0; i < list.size(); i++) {
+            expected[i] = list.get(i);
+        }
+        for(int i=0;i<value.length;i+=1)
+            expected[i+ list.size()] = value[i];
+        assertArrayEquals(arr.toArray(), expected);
+        assertEquals(arr.size(), expected.length);
+
+    }
+    @Test
+    public void testAddList() {
+        testAddList(firstList, new Object[] {1, 2, 3});
+        testAdd(secondList, new Object[] {1, 2, 3});
+        testAdd(emptyList, new Object[] {1, 2, 3});
+        checkArrays();
+    }
+
+
     public void testRemove(ImmutableLinkedList list, int index) {
         ImmutableLinkedList arr = (ImmutableLinkedList) list.remove(index);
         Object[] expected = new Object[list.size() - 1];
@@ -223,6 +245,11 @@ public class ImmutableLinkedListTest {
         testRemoveFirst(firstList);
         testRemoveFirst(secondList);
     }
+    @Test
+    public void testClear(){
+        assertEquals(firstList.clear().toString(),"");
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListGetError() {
         emptyList.get(0);
@@ -231,7 +258,10 @@ public class ImmutableLinkedListTest {
     public void testListGetError2() {
        firstList.get(1);
     }
-
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testListGetError3() {
+        firstList.get(-5);
+    }
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListSetError() {
         emptyList.set(0,4);
@@ -256,5 +286,10 @@ public class ImmutableLinkedListTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListAddError2() {
         firstList.add(2,34);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testListAddError3() {
+        emptyList.add(-1,34);
     }
 }

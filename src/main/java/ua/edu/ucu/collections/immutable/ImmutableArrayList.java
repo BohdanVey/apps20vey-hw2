@@ -68,7 +68,7 @@ public class ImmutableArrayList implements ImmutableList {
     public ImmutableList remove(int index) {
         checkBoundsBig(index);
         ImmutableArrayList copy = new ImmutableArrayList(len - 1);
-        if (index >= 0) System.arraycopy(elements, 0, copy.elements, 0, index);
+        System.arraycopy(elements, 0, copy.elements, 0, index);
         for (int i = index + 1; i < len; i += 1) {
             copy.elements[i - 1] = elements[i];
         }

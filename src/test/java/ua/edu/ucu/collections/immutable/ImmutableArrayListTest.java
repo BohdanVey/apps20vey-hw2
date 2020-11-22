@@ -43,11 +43,26 @@ public class ImmutableArrayListTest {
 
     }
 
+
+
+
+    public void testAddList(ImmutableArrayList list, Object[] value) {
+        ImmutableArrayList arr = (ImmutableArrayList) list.addAll(value);
+        Object[] expected = new Object[list.size() + value.length];
+        for (int i = 0; i < list.size(); i++) {
+            expected[i] = list.get(i);
+        }
+        for(int i=0;i<value.length;i+=1)
+            expected[i+ list.size()] = value[i];
+        assertArrayEquals(arr.toArray(), expected);
+        assertEquals(arr.size(), expected.length);
+
+    }
     @Test
-    public void testAdd() {
-        testAdd(firstList, 5);
-        testAdd(secondList, 5);
-        testAdd(emptyList, 5);
+    public void testAddList() {
+        testAddList(firstList, new Object[] {1, 2, 3});
+        testAdd(secondList, new Object[] {1, 2, 3});
+        testAdd(emptyList, new Object[] {1, 2, 3});
         checkArrays();
     }
 
@@ -141,6 +156,11 @@ public class ImmutableArrayListTest {
         assertEquals(emptyList.toString(),"");
     }
 
+    @Test
+    public void testClear(){
+        assertEquals(firstList.clear().toString(),"");
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListGetError() {
         emptyList.get(0);
@@ -149,7 +169,10 @@ public class ImmutableArrayListTest {
     public void testListGetError2() {
         firstList.get(1);
     }
-
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testListGetError3() {
+        firstList.get(-5);
+    }
     @Test(expected = IndexOutOfBoundsException.class)
     public void testListSetError() {
         emptyList.set(0,4);
@@ -175,5 +198,9 @@ public class ImmutableArrayListTest {
     public void testListAddError2() {
         firstList.add(2,34);
     }
+    public void testListAddError3() {
+        firstList.add(-5,34);
+    }
+
 
 }
