@@ -207,7 +207,7 @@ public class ImmutableArrayListTest {
         firstList.add(2, 34);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testListAddError3() {
         firstList.add(-5, 34);
     }
